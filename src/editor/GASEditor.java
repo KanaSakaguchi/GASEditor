@@ -22,7 +22,7 @@ class GASEditor extends JEditorPane {
             public void keyReleased(KeyEvent event) {
                 if (event.getKeyChar() == '.') {
                     //試しにキーワードを出力する
-                    System.out.println(getKeyword(getText().length()));
+                    System.out.println(getKeyword(getText().length() - 1));
                 }
             }
         });
@@ -62,7 +62,7 @@ class GASEditor extends JEditorPane {
     private String getKeyword(int dotPos) {
         try {
             //入力された.より前の文字を取得
-            String strBeforePos = getText(dotPos - 1);
+            String strBeforePos = getText(dotPos);
 
             //先頭・改行コード・スペース・タブ・.の中で一番dotPosに近い位置が開始位置
             int start = 0;
@@ -80,9 +80,9 @@ class GASEditor extends JEditorPane {
             }
 
             //dotPos前と(一番dotPosから遠い位置が終了位置
-            int end = dotPos - 1;
-            if (strBeforePos.substring(start).indexOf("(") < end) {
-                end = strBeforePos.substring(start).indexOf("(");
+            int end = dotPos;
+            if (strBeforePos.substring(start).contains("(")) {
+                end = start + strBeforePos.substring(start).indexOf("(");
             }
 
             //その範囲がキーワード
