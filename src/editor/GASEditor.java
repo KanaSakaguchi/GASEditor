@@ -39,6 +39,14 @@ class GASEditor extends JEditorPane {
     private void showCompletionPopup(String keyword) {
         JPopupMenu completionPopup = new JPopupMenu();
         JMenuItem test = new JMenuItem("test");
+        test.addActionListener(event -> {
+            String menu = ((JMenuItem) event.getSource()).getText();
+            try {
+                getDocument().insertString(getText().length(), menu, null);
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+        });
         completionPopup.add(test);
         Point caretPosition = getCaret().getMagicCaretPosition();
         completionPopup.show(this, caretPosition.x, caretPosition.y + 20);
