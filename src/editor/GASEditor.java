@@ -1,7 +1,10 @@
 package editor;
 
 import javax.swing.JEditorPane;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.text.BadLocationException;
+import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -14,18 +17,31 @@ class GASEditor extends JEditorPane {
     }
 
     /**
-     * .が入力されたらキーワードを取り出す
+     * .が入力されたらコード補完用ポップアップを表示
      */
     private void addDotListener() {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent event) {
                 if (event.getKeyChar() == '.') {
-                    //試しにキーワードを出力する
-                    System.out.println(getKeyword(getText().length() - 1));
+                    String keyword = getKeyword(getText().length() - 1);
+                    showCompletionPopup(keyword);
                 }
             }
         });
+    }
+
+    /**
+     * コード補完用ポップアップメニューを作成
+     *
+     * @param keyword メニュー項目構築に用いるキーワード
+     */
+    private void showCompletionPopup(String keyword) {
+        JPopupMenu completionPopup = new JPopupMenu();
+        JMenuItem test = new JMenuItem("test");
+        completionPopup.add(test);
+        Point caretPosition = getCaret().getMagicCaretPosition();
+        completionPopup.show(this, caretPosition.x, caretPosition.y + 20);
     }
 
     /**
