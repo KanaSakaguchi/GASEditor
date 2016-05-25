@@ -1,5 +1,8 @@
 package editor;
 
+import data.CompletionData;
+import data.Data;
+
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -37,17 +40,23 @@ class GASEditor extends JEditorPane {
      * @param keyword メニュー項目構築に用いるキーワード
      */
     private void showCompletionPopup(String keyword) {
+        Data[] completions = CompletionData.getInstance().getCompletions(keyword);
+        if (completions.length == 0) {
+            return;
+        }
         JPopupMenu completionPopup = new JPopupMenu();
-        JMenuItem test = new JMenuItem("test");
-        test.addActionListener(event -> {
-            String menu = ((JMenuItem) event.getSource()).getText();
-            try {
-                getDocument().insertString(getText().length(), menu, null);
-            } catch (BadLocationException e) {
-                e.printStackTrace();
-            }
-        });
-        completionPopup.add(test);
+        for (Data completion : completions) {
+            JMenuItem item = new JMenuItem(completion.methodName);
+            item.addActionListener(event -> {
+                String menu = ((JMenuItem) event.getSource()).getText();
+                try {
+                    getDocument().insertString(getText().length(), menu, null);
+                } catch (BadLocationException e) {
+                    e.printStackTrace();
+                }
+            });
+            completionPopup.add(item);
+        }
         Point caretPosition = getCaret().getMagicCaretPosition();
         completionPopup.show(this, caretPosition.x, caretPosition.y + 20);
     }
