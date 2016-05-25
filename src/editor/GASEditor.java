@@ -50,7 +50,11 @@ class GASEditor extends JEditorPane {
             item.addActionListener(event -> {
                 String menu = ((JMenuItem) event.getSource()).getText();
                 try {
-                    getDocument().insertString(getText().length(), menu, null);
+                    if (completion.returnClassName.equals("void")) {
+                        getDocument().insertString(getText().length(), menu + ";", null);
+                    } else {
+                        getDocument().insertString(getText().length(), menu, null);
+                    }
                 } catch (BadLocationException e) {
                     e.printStackTrace();
                 }
