@@ -49,10 +49,24 @@ public class CompletionData {
     /**
      * 入力補完候補を取得
      *
-     * @param className クラス名
+     * @param keyword 補完候補検索に使うキーワード
      * @return 入力補完候補
      */
-    public Data[] getCompletions(String className) {
+    public Data[] getCompletions(String keyword) {
+        if (keyword.contains("(")) {
+            return getCompretionsByMethod(keyword);
+        } else {
+            return getCompretionsByClassOrProperty(keyword);
+        }
+    }
+
+    /**
+     * クラス名から補完候補を取得
+     *
+     * @param className クラス名
+     * @return 補完候補
+     */
+    private Data[] getCompretionsByClassOrProperty(String className) {
         List<Data> completions = new ArrayList<>();
         for (Data data : completionData) {
             if (className.equals(data.getClassName())) {
@@ -60,5 +74,26 @@ public class CompletionData {
             }
         }
         return completions.toArray(new Data[0]);
+    }
+
+    /**
+     * メソッドから補完候補を取得
+     *
+     * @param methodName メソッド
+     * @return 補完候補
+     */
+    private Data[] getCompretionsByMethod(String methodName) {
+        for (Data data : completionData) {
+            //FixMe このメソッド判定はいけてない
+            int paramCount = 0;
+            if (methodName.indexOf(")") - methodName.indexOf("(") > 1) {
+                paramCount = methodName.split(",").length;
+            }
+            if (data.getCompletion().startsWith(methodName.substring(0, methodName.indexOf("(") + 1))
+                    && data.getParamCount() == paramCount) {
+                return getCompretionsByClassOrProperty(data.getReturnClassName());
+            }
+        }
+        return new Data[0];
     }
 }

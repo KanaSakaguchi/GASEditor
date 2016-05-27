@@ -175,5 +175,45 @@
     "description": {
       "en": "Sets the active spreadsheet.\n\n\nParameters\nName	Type	Description\nnewActiveSpreadsheet	Spreadsheet	the Spreadsheet to be made the active spreadsheet"
     }
+  },
+  {
+    "class": "Spreadsheet",
+    "type": "Method",
+    "completion": "addEditor(emailAddress)",
+    "paramCount": 1,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Adds the given user to the list of editors for the Spreadsheet. If the user was already on the list of viewers, this method promotes the user out of the list of viewers.\n\n\nParameters\nName	Type	Description\nemailAddress	String	the email address of the user to add\n\n\nReturn\nSpreadsheet — this Spreadsheet, for chaining"
+    }
+  },
+  {
+    "class": "Spreadsheet",
+    "type": "Method",
+    "completion": "addEditor(user)",
+    "paramCount": 1,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Adds the given user to the list of editors for the Spreadsheet. If the user was already on the list of viewers, this method promotes the user out of the list of viewers.\n\n\nParameters\nName	Type	Description\nuser	User	a representation of the user to add\n\n\nReturn\nSpreadsheet — this Spreadsheet, for chaining"
+    }
+  },
+  {
+    "class": "Spreadsheet",
+    "type": "Method",
+    "completion": "addEditors(emailAddresses)",
+    "paramCount": 1,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Adds the given array of users to the list of editors for the Spreadsheet. If any of the users were already on the list of viewers, this method promotes them out of the list of viewers.\n\n\nParameters\nName	Type	Description\nemailAddresses	String[]	an array of email addresses of the users to add\n\n\nReturn\nSpreadsheet — this Spreadsheet, for chaining"
+    }
+  },
+  {
+    "class": "Spreadsheet",
+    "type": "Method",
+    "completion": "addMenu(name, subMenus)",
+    "paramCount": 2,
+    "return": "void",
+    "description": {
+      "en": "Creates a new menu in the Spreadsheet UI. Each menu entry runs a user-defined function. Usually, you will want to call it from the onOpen function so that the menu is automatically created when the Spreadsheet is loaded.\n\n\nParameters\nName	Type	Description\nname	String	the name of the menu to be created\nsubMenus	Object[]	an array of JavaScript maps with name and functionName parameters"
+    }
   }
 ]

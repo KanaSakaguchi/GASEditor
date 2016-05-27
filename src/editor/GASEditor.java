@@ -116,14 +116,8 @@ class GASEditor extends JEditorPane {
                 start = strBeforePos.lastIndexOf(".") + 1;
             }
 
-            //dotPos前と(一番dotPosから遠い位置が終了位置
-            int end = dotPos;
-            if (strBeforePos.substring(start).contains("(")) {
-                end = start + strBeforePos.substring(start).indexOf("(");
-            }
-
-            //その範囲がキーワード
-            return getText(start, end);
+            //startからdotPosの範囲がキーワード
+            return getText(start, dotPos);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
