@@ -1,14 +1,18 @@
-package data;
+package item;
 
 import org.json.JSONObject;
 
+import javax.swing.JMenuItem;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+
 /**
- * メソッドリストの1行分のデータを保持
+ * Created by sakaguchikana on 2016/05/27.
  */
-public class Data {
+public class CompletionItem {
     private final JSONObject data;
 
-    Data(JSONObject data) {
+    CompletionItem(JSONObject data) {
         this.data = data;
     }
 
@@ -49,5 +53,22 @@ public class Data {
      */
     public String getReturnClassName() {
         return data.getString("return");
+    }
+
+    public JMenuItem getItem(Document document, int location) {
+        JMenuItem item = new JMenuItem(getCompletion());
+        item.addActionListener(event -> {
+            String menu = ((JMenuItem) event.getSource()).getText();
+            try {
+                if (getReturnClassName().equals("void")) {
+                    document.insertString(location, menu + ";", null);
+                } else {
+                    document.insertString(location, menu, null);
+                }
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
+        });
+        return item;
     }
 }

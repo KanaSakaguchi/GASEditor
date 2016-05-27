@@ -1,4 +1,4 @@
-package data;
+package item;
 
 import org.json.JSONArray;
 
@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -16,7 +17,7 @@ import java.util.stream.Stream;
 public class CompletionData {
     private static CompletionData instance = new CompletionData();
 
-    private List<Data> completionData;
+    private List<CompletionItem> completionData;
 
     public static CompletionData getInstance() {
         return instance;
@@ -37,7 +38,7 @@ public class CompletionData {
             stream.map(String::toString).forEach(line -> json[0] += line);
             JSONArray jsonArray = new JSONArray(json[0]);
             for (int n = 0; n < jsonArray.length(); n++) {
-                completionData.add(new Data(jsonArray.getJSONObject(n)));
+                completionData.add(new CompletionItem(jsonArray.getJSONObject(n)));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,11 +53,11 @@ public class CompletionData {
      * @param keyword 補完候補検索に使うキーワード
      * @return 入力補完候補
      */
-    public Data[] getCompletions(String keyword) {
+    public CompletionItem[] getCompletions(String keyword) {
         if (keyword.contains("(")) {
             return getCompretionsByMethod(keyword);
         } else {
-            return getCompretionsByClassOrProperty(keyword);
+            return getCompletionsByClassOrProperty(keyword);
         }
     }
 
@@ -66,14 +67,9 @@ public class CompletionData {
      * @param className クラス名
      * @return 補完候補
      */
-    private Data[] getCompretionsByClassOrProperty(String className) {
-        List<Data> completions = new ArrayList<>();
-        for (Data data : completionData) {
-            if (className.equals(data.getClassName())) {
-                completions.add(data);
-            }
-        }
-        return completions.toArray(new Data[0]);
+    private CompletionItem[] getCompletionsByClassOrProperty(String className) {
+        List<CompletionItem> completions = completionData.stream().filter(item -> className.equals(item.getClassName())).collect(Collectors.toList());
+        return completions.toArray(new CompletionItem[0]);
     }
 
     /**
@@ -82,18 +78,18 @@ public class CompletionData {
      * @param methodName メソッド
      * @return 補完候補
      */
-    private Data[] getCompretionsByMethod(String methodName) {
-        for (Data data : completionData) {
+    private CompletionItem[] getCompretionsByMethod(String methodName) {
+        for (CompletionItem item : completionData) {
             //FixMe このメソッド判定はいけてない
             int paramCount = 0;
             if (methodName.indexOf(")") - methodName.indexOf("(") > 1) {
                 paramCount = methodName.split(",").length;
             }
-            if (data.getCompletion().startsWith(methodName.substring(0, methodName.indexOf("(") + 1))
-                    && data.getParamCount() == paramCount) {
-                return getCompretionsByClassOrProperty(data.getReturnClassName());
+            if (item.getCompletion().startsWith(methodName.substring(0, methodName.indexOf("(") + 1))
+                    && item.getParamCount() == paramCount) {
+                return getCompletionsByClassOrProperty(item.getReturnClassName());
             }
         }
-        return new Data[0];
+        return new CompletionItem[0];
     }
 }

@@ -1,10 +1,9 @@
 package editor;
 
-import data.CompletionData;
-import data.Data;
+import item.CompletionData;
+import item.CompletionItem;
 
 import javax.swing.JEditorPane;
-import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.text.BadLocationException;
 import java.awt.Point;
@@ -40,26 +39,13 @@ class GASEditor extends JEditorPane {
      * @param keyword メニュー項目構築に用いるキーワード
      */
     private void showCompletionPopup(String keyword) {
-        Data[] completions = CompletionData.getInstance().getCompletions(keyword);
+        CompletionItem[] completions = CompletionData.getInstance().getCompletions(keyword);
         if (completions.length == 0) {
             return;
         }
         JPopupMenu completionPopup = new JPopupMenu();
-        for (Data completion : completions) {
-            JMenuItem item = new JMenuItem(completion.getCompletion());
-            item.addActionListener(event -> {
-                String menu = ((JMenuItem) event.getSource()).getText();
-                try {
-                    if (completion.getReturnClassName().equals("void")) {
-                        getDocument().insertString(getText().length(), menu + ";", null);
-                    } else {
-                        getDocument().insertString(getText().length(), menu, null);
-                    }
-                } catch (BadLocationException e) {
-                    e.printStackTrace();
-                }
-            });
-            completionPopup.add(item);
+        for (CompletionItem item : completions) {
+            completionPopup.add(item.getItem(getDocument(), getText().length()));
         }
         Point caretPosition = getCaret().getMagicCaretPosition();
         completionPopup.show(this, caretPosition.x, caretPosition.y + 20);
