@@ -1,0 +1,179 @@
+[
+  {
+    "class": "SpreadSheetApp",
+    "type": "Property",
+    "completion": "BorderStyle",
+    "return": "BorderStyle",
+    "description": {
+      "en": "An enumeration of the valid styles for setting borders on a Range."
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Property",
+    "completion": "DataValidationCriteria",
+    "return": "DataValidationCriteria",
+    "description": {
+      "en": "An enumeration representing the data-validation criteria that can be set on a range."
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Property",
+    "completion": "ProtectionType",
+    "return": "ProtectionType",
+    "description": {
+      "en": "An enumeration representing the parts of a spreadsheet that can be protected from edits."
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "create(name)",
+    "paramCount": 1,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Creates a new spreadsheet with the given name.\n\nParameters\nName	Type	Description\nname	String	the name for the spreadsheet\n\n\nReturn\nSpreadsheet — a new spreadsheet"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "create(name, rows, columns)",
+    "paramCount": 3,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Creates a new spreadsheet with the given name and the specified number of rows and columns.\n\nParameters\nName	Type	Description\nname	String	the name for the spreadsheet\nrows	Integer	the number of rows for the spreadsheet\ncolumns	Integer	the number of columns for the spreadsheet\n\n\nReturn\nSpreadsheet — a new spreadsheet"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "flush()",
+    "paramCount": 0,
+    "return": "void",
+    "description": {
+      "en": "Applies all pending Spreadsheet changes. Spreadsheet operations are sometimes bundled together to improve performance, such as when doing multiple calls to Range.getValue(). However, sometimes you may want to make sure that all pending changes are made right away, for instance to show users data as a script is executing."
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "getActive()",
+    "paramCount": 0,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Returns the currently active spreadsheet, or null if there is none. Functions that are run in the context of a spreadsheet can get a reference to the corresponding Spreadsheet object by calling this function."
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "getActiveRange()",
+    "paramCount": 0,
+    "return": "Range",
+    "description": {
+      "en": "Returns the range of cells that is currently considered active. This generally means the range that a user has selected in the active sheet, but in a custom function it refers to the cell being actively recalculated.\n\n\nReturn\nRange — the active Range object"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "getActiveSheet()",
+    "paramCount": 0,
+    "return": "Sheet",
+    "description": {
+      "en": "Gets the active sheet in a spreadsheet. The active sheet in a spreadsheet is the sheet that is being displayed in the spreadsheet UI.\n\n\nReturn\nSheet — the active Sheet object"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "getActiveSpreadsheet()",
+    "paramCount": 0,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Returns the currently active spreadsheet, or null if there is none. Functions that are run in the context of a spreadsheet can get a reference to the corresponding Spreadsheet object by calling this function.\n\n\nReturn\nSpreadsheet — the active Spreadsheet object"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "getUi()",
+    "paramCount": 0,
+    "return": "Ui",
+    "description": {
+      "en": "Returns an instance of the spreadsheet's user-interface environment that allows the script to add features like menus, dialogs, and sidebars. A script can only interact with the UI for the current instance of an open spreadsheet, and only if the script is bound to the spreadsheet. For more information, see the guides to menus and dialogs and sidebars.\n\nThis method only works in the new version of Google Sheets. The older version of Sheets continues to use an alternate syntax shown in the guides above.\n\n\nReturn\nUi — an instance of this spreadsheet's user-interface environment"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "newDataValidation()",
+    "paramCount": 0,
+    "return": "DataValidationBuilder",
+    "description": {
+      "en": "Creates a builder for a data-validation rule.\n\n\nReturn\nDataValidationBuilder — the new builder"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "open(file)",
+    "paramCount": 1,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Opens the spreadsheet that corresponds to the given File object.\n\n\nParameters\nName	Type	Description\nfile	File	the File to open\n\n\nReturn\nSpreadsheet — the spreadsheet"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "openById(id)",
+    "paramCount": 1,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Opens the spreadsheet with the given ID. A spreadsheet ID can be extracted from its URL. For example, the spreadsheet ID in the URL https://docs.google.com/spreadsheets/d/abc1234567/edit#gid=0 is \"abc1234567\".\n\n\nParameters\nName	Type	Description\nid	String	the unique identifier for the spreadsheet\n\n\nReturn\nSpreadsheet — the Spreadsheet object with the given id"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "openByUrl(url)",
+    "paramCount": 1,
+    "return": "Spreadsheet",
+    "description": {
+      "en": "Opens the spreadsheet with the given url.\n\n\nParameters\nName	Type	Description\nurl	String	the url for the spreadsheet\n\n\nReturn\nSpreadsheet — the Spreadsheet object with the given id"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "setActiveRange(range)",
+    "paramCount": 1,
+    "return": "Range",
+    "description": {
+      "en": "Sets the active range for the application. The spreadsheet UI will display the sheet that contains the chosen range and will select the cells defined in the chosen range.\n\n\nParameters\nName	Type	Description\nrange	Range	the Range to be made the active Range\n\n\nReturn\nRange — the new active Range"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "setActiveSheet(sheet)",
+    "paramCount": 1,
+    "return": "Sheet",
+    "description": {
+      "en": "Sets the active sheet in a spreadsheet. The spreadsheet UI will display the chosen sheet unless the sheet belongs to a different spreadsheet.\n\n\nParameters\nName	Type	Description\nsheet	Sheet	the new active Sheet\n\n\nReturn\nSheet — the Sheet that has been made the new active Sheet"
+    }
+  },
+  {
+    "class": "SpreadSheetApp",
+    "type": "Method",
+    "completion": "setActiveSpreadsheet(newActiveSpreadsheet)",
+    "paramCount": 1,
+    "return": "void",
+    "description": {
+      "en": "Sets the active spreadsheet.\n\n\nParameters\nName	Type	Description\nnewActiveSpreadsheet	Spreadsheet	the Spreadsheet to be made the active spreadsheet"
+    }
+  }
+]

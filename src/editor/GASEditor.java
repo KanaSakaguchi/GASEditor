@@ -46,11 +46,11 @@ class GASEditor extends JEditorPane {
         }
         JPopupMenu completionPopup = new JPopupMenu();
         for (Data completion : completions) {
-            JMenuItem item = new JMenuItem(completion.methodName);
+            JMenuItem item = new JMenuItem(completion.getCompletion());
             item.addActionListener(event -> {
                 String menu = ((JMenuItem) event.getSource()).getText();
                 try {
-                    if (completion.returnClassName.equals("void")) {
+                    if (completion.getReturnClassName().equals("void")) {
                         getDocument().insertString(getText().length(), menu + ";", null);
                     } else {
                         getDocument().insertString(getText().length(), menu, null);

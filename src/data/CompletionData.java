@@ -1,5 +1,7 @@
 package data;
 
+import org.json.JSONArray;
+
 import javax.swing.JOptionPane;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -29,12 +31,14 @@ public class CompletionData {
      * カレントディレクトリにあるmethodList.csvを読み込んでリストに追加
      */
     private void importCsvFile() {
-        String path = "methodList.csv";
+        String path = "methodList.json";
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
-            stream.map(String::toString).forEach(line -> {
-                String[] data = line.split("#");
-                completionData.add(new Data(data[0], data[1], data[2]));
-            });
+            final String[] json = {""};
+            stream.map(String::toString).forEach(line -> json[0] += line);
+            JSONArray jsonArray = new JSONArray(json[0]);
+            for (int n = 0; n < jsonArray.length(); n++) {
+                completionData.add(new Data(jsonArray.getJSONObject(n)));
+            }
         } catch (IOException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, path + "が読み込めませんでした。\nプログラムを終了します。", "GASEditor", JOptionPane.ERROR_MESSAGE);
@@ -49,9 +53,9 @@ public class CompletionData {
      * @return 入力補完候補
      */
     public Data[] getCompletions(String className) {
-        ArrayList<Data> completions = new ArrayList<>();
+        List<Data> completions = new ArrayList<>();
         for (Data data : completionData) {
-            if (className.equals(data.className)) {
+            if (className.equals(data.getClassName())) {
                 completions.add(data);
             }
         }

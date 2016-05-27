@@ -1,16 +1,34 @@
 package data;
 
+import org.json.JSONObject;
+
 /**
  * メソッドリストの1行分のデータを保持
  */
 public class Data {
-    public final String className;
-    public final String methodName;
-    public final String returnClassName;
+    private final JSONObject data;
 
-    Data(String className, String methodName, String returnClassName) {
-        this.className = className;
-        this.methodName = methodName;
-        this.returnClassName = returnClassName;
+    Data(JSONObject data) {
+        this.data = data;
+    }
+
+    public String getClassName() {
+        return data.getString("class");
+    }
+
+    public String getType() {
+        return data.getString("type");
+    }
+
+    public String getCompletion() {
+        return data.getString("completion");
+    }
+
+    public int getParamCount() {
+        return data.getInt("paramCount");
+    }
+
+    public String getReturnClassName() {
+        return data.getString("return");
     }
 }
