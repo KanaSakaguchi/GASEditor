@@ -30,10 +30,12 @@ class GASEditor extends JEditorPane {
                     try {
                         String keyword = getKeyword(getText().length() - 1);
                         JComboBox<CompletionItem> completions = CompletionData.getInstance().getCompletions(keyword);
-                        CompletionsPopup popup = new CompletionsPopup(completions, getDocument(), getCaretPosition());
-                        Rectangle rect = modelToView(getCaretPosition());
-                        popup.show(GASEditor.this, rect.x, rect.y + rect.height);
-                        requestFocusInWindow();
+                        if (completions.getItemCount() > 0) {
+                            CompletionsPopup popup = new CompletionsPopup(completions, getDocument(), getCaretPosition());
+                            Rectangle rect = modelToView(getCaretPosition());
+                            popup.show(GASEditor.this, rect.x, rect.y + rect.height);
+                            requestFocusInWindow();
+                        }
                     } catch (BadLocationException e) {
                         e.printStackTrace();
                     }
