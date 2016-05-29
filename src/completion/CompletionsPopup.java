@@ -89,7 +89,7 @@ public class CompletionsPopup extends BasicComboPopup {
             completion += ";";
         }
         try {
-            document.insertString(position, completion, null);
+            document.insertString(position + 1, completion, null);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
