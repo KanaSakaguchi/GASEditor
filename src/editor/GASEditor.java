@@ -25,10 +25,10 @@ class GASEditor extends JEditorPane {
     private void addDotListener() {
         addKeyListener(new KeyAdapter() {
             @Override
-            public void keyReleased(KeyEvent event) {
+            public void keyTyped(KeyEvent event) {
                 if (event.getKeyChar() == '.') {
                     try {
-                        String keyword = getKeyword(getText().length() - 1);
+                        String keyword = getKeyword(getCaretPosition());
                         JComboBox<CompletionItem> completions = CompletionData.getInstance().getCompletions(keyword);
                         if (completions.getItemCount() > 0) {
                             CompletionsPopup popup = new CompletionsPopup(completions, getDocument(), getCaretPosition());
