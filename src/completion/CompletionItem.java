@@ -9,7 +9,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 /**
- * Created by sakaguchikana on 2016/05/27.
+ * 補完候補の1データを管理
  */
 public class CompletionItem {
     private final JSONObject data;

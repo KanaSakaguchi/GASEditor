@@ -6,6 +6,9 @@ import javax.swing.ListCellRenderer;
 import java.awt.Color;
 import java.awt.Component;
 
+/**
+ * ポップアップメニューに表示される補完候補の1アイテムのデザイン管理
+ */
 class CompletionCellRenderer extends JLabel implements ListCellRenderer {
 
     CompletionCellRenderer() {
