@@ -1,4 +1,4 @@
-package item;
+package completion;
 
 import javax.swing.JLabel;
 import javax.swing.JList;

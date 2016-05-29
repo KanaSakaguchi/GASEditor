@@ -1,4 +1,4 @@
-package item;
+package completion;
 
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboPopup;

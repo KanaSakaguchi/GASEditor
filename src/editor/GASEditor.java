@@ -1,8 +1,8 @@
 package editor;
 
-import item.CompletionData;
-import item.CompletionItem;
-import item.CompletionsPopup;
+import completion.CompletionData;
+import completion.CompletionItem;
+import completion.CompletionsPopup;
 
 import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
