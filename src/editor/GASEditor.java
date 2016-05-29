@@ -2,11 +2,12 @@ package editor;
 
 import item.CompletionData;
 import item.CompletionItem;
+import item.CompletionsPopup;
 
+import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
-import javax.swing.JPopupMenu;
 import javax.swing.text.BadLocationException;
-import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -26,29 +27,20 @@ class GASEditor extends JEditorPane {
             @Override
             public void keyReleased(KeyEvent event) {
                 if (event.getKeyChar() == '.') {
-                    String keyword = getKeyword(getText().length() - 1);
-                    showCompletionPopup(keyword);
+                    try {
+                        String keyword = getKeyword(getText().length() - 1);
+                        CompletionItem[] item = CompletionData.getInstance().getCompletions(keyword);
+                        JComboBox<CompletionItem> completions = new JComboBox<>(item);
+                        CompletionsPopup popup = new CompletionsPopup(completions, getDocument(), getCaretPosition());
+                        Rectangle rect = modelToView(getCaretPosition());
+                        popup.show(GASEditor.this, rect.x, rect.y + rect.height);
+                        requestFocusInWindow();
+                    } catch (BadLocationException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
-    }
-
-    /**
-     * コード補完用ポップアップメニューを作成
-     *
-     * @param keyword メニュー項目構築に用いるキーワード
-     */
-    private void showCompletionPopup(String keyword) {
-        CompletionItem[] completions = CompletionData.getInstance().getCompletions(keyword);
-        if (completions.length == 0) {
-            return;
-        }
-        JPopupMenu completionPopup = new JPopupMenu();
-        for (CompletionItem item : completions) {
-            completionPopup.add(item.getItem(getDocument(), getText().length()));
-        }
-        Point caretPosition = getCaret().getMagicCaretPosition();
-        completionPopup.show(this, caretPosition.x, caretPosition.y + 20);
     }
 
     /**

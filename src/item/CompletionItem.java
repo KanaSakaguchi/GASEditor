@@ -71,4 +71,12 @@ public class CompletionItem {
         });
         return item;
     }
+
+    /**
+     * @return 補完候補として表示させる文字列
+     */
+    @Override
+    public String toString() {
+        return getCompletion();
+    }
 }
