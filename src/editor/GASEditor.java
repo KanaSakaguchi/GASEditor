@@ -29,8 +29,7 @@ class GASEditor extends JEditorPane {
                 if (event.getKeyChar() == '.') {
                     try {
                         String keyword = getKeyword(getText().length() - 1);
-                        CompletionItem[] item = CompletionData.getInstance().getCompletions(keyword);
-                        JComboBox<CompletionItem> completions = new JComboBox<>(item);
+                        JComboBox<CompletionItem> completions = CompletionData.getInstance().getCompletions(keyword);
                         CompletionsPopup popup = new CompletionsPopup(completions, getDocument(), getCaretPosition());
                         Rectangle rect = modelToView(getCaretPosition());
                         popup.show(GASEditor.this, rect.x, rect.y + rect.height);

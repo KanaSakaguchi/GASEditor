@@ -2,6 +2,8 @@ package item;
 
 import org.json.JSONObject;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
@@ -28,6 +30,13 @@ public class CompletionItem {
      */
     public String getType() {
         return data.getString("type");
+    }
+
+    /**
+     * @return タイプのアイコン
+     */
+    public Icon getTypeIcon() {
+        return new ImageIcon("img/" + getType() + ".png");
     }
 
     /**

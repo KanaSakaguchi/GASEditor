@@ -2,6 +2,7 @@ package item;
 
 import org.json.JSONArray;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -53,12 +54,15 @@ public class CompletionData {
      * @param keyword 補完候補検索に使うキーワード
      * @return 入力補完候補
      */
-    public CompletionItem[] getCompletions(String keyword) {
+    public JComboBox<CompletionItem> getCompletions(String keyword) {
+        JComboBox<CompletionItem> completions;
         if (keyword.contains("(")) {
-            return getCompretionsByMethod(keyword);
+            completions = new JComboBox<>(getCompretionsByMethod(keyword));
         } else {
-            return getCompletionsByClassOrProperty(keyword);
+            completions = new JComboBox<>(getCompletionsByClassOrProperty(keyword));
         }
+        completions.setRenderer(new CompletionCellRenderer());
+        return completions;
     }
 
     /**
