@@ -4,9 +4,6 @@ import org.json.JSONObject;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JMenuItem;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 
 /**
  * 補完候補の1データを管理
@@ -62,23 +59,6 @@ public class CompletionItem {
      */
     public String getReturnClassName() {
         return data.getString("return");
-    }
-
-    public JMenuItem getItem(Document document, int location) {
-        JMenuItem item = new JMenuItem(getCompletion());
-        item.addActionListener(event -> {
-            String menu = ((JMenuItem) event.getSource()).getText();
-            try {
-                if (getReturnClassName().equals("void")) {
-                    document.insertString(location, menu + ";", null);
-                } else {
-                    document.insertString(location, menu, null);
-                }
-            } catch (BadLocationException e) {
-                e.printStackTrace();
-            }
-        });
-        return item;
     }
 
     /**
