@@ -25,6 +25,7 @@ class CompletionCellRenderer extends JLabel implements ListCellRenderer {
         CompletionItem data = (CompletionItem) value;
         setText(data.getCompletion());
         setIcon(data.getTypeIcon());
+        setToolTipText(data.getDescription("en")); //ToDo 説明文の日本語対応できたらエディターの設定から言語を取得する
 
         if (isSelected) {
             setBackground(new Color(179, 216, 253));

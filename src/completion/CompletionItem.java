@@ -60,4 +60,12 @@ public class CompletionItem {
     public String getReturnClassName() {
         return data.getString("return");
     }
+
+    /**
+     * @param lang 説明の言語 en または ja ToDo 説明文の日本語対応したい
+     * @return 説明文
+     */
+    public String getDescription(String lang) {
+        return data.getJSONObject("description").getString(lang);
+    }
 }
