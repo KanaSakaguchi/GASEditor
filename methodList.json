@@ -5,7 +5,7 @@
     "completion": "BorderStyle",
     "return": "BorderStyle",
     "description": {
-      "en": "An enumeration of the valid styles for setting borders on a Range."
+      "en": "<html>An enumeration of the valid styles for setting borders on a <code><a href='https://developers.google.com/apps-script/reference/spreadsheet/range.html'><span>Range</span></a></code></html>"
     }
   },
   {
@@ -14,7 +14,7 @@
     "completion": "DataValidationCriteria",
     "return": "DataValidationCriteria",
     "description": {
-      "en": "An enumeration representing the data-validation criteria that can be set on a range."
+      "en": "<html>An enumeration representing the data-validation criteria that can be set on a range.</html>"
     }
   },
   {
@@ -23,7 +23,7 @@
     "completion": "ProtectionType",
     "return": "ProtectionType",
     "description": {
-      "en": "An enumeration representing the parts of a spreadsheet that can be protected from edits."
+      "en": "<html>An enumeration representing the parts of a spreadsheet that can be protected from edits.</html>"
     }
   },
   {
@@ -33,7 +33,7 @@
     "paramCount": 1,
     "return": "Spreadsheet",
     "description": {
-      "en": "Creates a new spreadsheet with the given name.\n\nParameters\nName	Type	Description\nname	String	the name for the spreadsheet\n\n\nReturn\nSpreadsheet — a new spreadsheet"
+      "en": "<html><div><h3><code>create(name)</code></h3><p>Creates a new spreadsheet with the given name.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below creates a new spreadsheet 'Finances' and logs the URL for it</span><span><br>&nbsp;</span><span>var</span><span> ssNew </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>create</span><span>(</span><span>'Finances'</span><span>);</span><span><br>&nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>ssNew</span><span>.</span><span>getUrl</span><span>());</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>name</span></code></td><td><code><span>String</span></code></td><td>the name for the spreadsheet</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet.html'>Spreadsheet</a></code> — a new spreadsheet</p></div></html>"
     }
   },
   {
@@ -43,7 +43,7 @@
     "paramCount": 3,
     "return": "Spreadsheet",
     "description": {
-      "en": "Creates a new spreadsheet with the given name and the specified number of rows and columns.\n\nParameters\nName	Type	Description\nname	String	the name for the spreadsheet\nrows	Integer	the number of rows for the spreadsheet\ncolumns	Integer	the number of columns for the spreadsheet\n\n\nReturn\nSpreadsheet — a new spreadsheet"
+      "en": "<html><div><h3><code>create(name, rows, columns)</code></h3><p>Creates a new spreadsheet with the given name and the specified number of rows and columns.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below creates a new spreadsheet \"Finances\" with 50 rows and 5 columns and logs the</span><span><br>&nbsp;</span><span>// URL for it</span><span><br>&nbsp;</span><span>var</span><span> ssNew </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>create</span><span>(</span><span>\"Finances\"</span><span>,</span><span> </span><span>50</span><span>,</span><span> </span><span>5</span><span>);</span><span><br>&nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>ssNew</span><span>.</span><span>getUrl</span><span>());</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>name</span></code></td><td><code><span>String</span></code></td><td>the name for the spreadsheet</td></tr><tr><td><code><span>rows</span></code></td><td><code><span>Integer</span></code></td><td>the number of rows for the spreadsheet</td></tr><tr><td><code><span>columns</span></code></td><td><code><span>Integer</span></code></td><td>the number of columns for the spreadsheet</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet.html'>Spreadsheet</a></code> — a new spreadsheet</p></div></html>"
     }
   },
   {
@@ -53,7 +53,7 @@
     "paramCount": 0,
     "return": "void",
     "description": {
-      "en": "Applies all pending Spreadsheet changes. Spreadsheet operations are sometimes bundled together to improve performance, such as when doing multiple calls to Range.getValue(). However, sometimes you may want to make sure that all pending changes are made right away, for instance to show users data as a script is executing."
+      "en": "<html><div><h3><code>flush()</code></h3><p>Applies all pending Spreadsheet changes.Spreadsheet operations are sometimes bundled together to improve performance, such as when doing multiple calls to Range.getValue(). However, sometimes you may want to make sure that all pending changes are made right away, for instance to show users data as a script is executing.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below changes the background color of cells A1 and B1 twenty times. You should be</span><span><br>&nbsp;</span><span>// able to see the updates live in the spreadsheet. If flush() is not called, the updates may</span><span><br>&nbsp;</span><span>// be applied live or may all be applied at once when the script completes.</span><span><br>&nbsp;</span><span>function</span><span> colors</span><span>()</span><span> </span><span>{</span><span><br>&nbsp; &nbsp;</span><span>var</span><span> sheet </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>getActiveSheet</span><span>();</span><span><br>&nbsp; &nbsp;</span><span>for</span><span> </span><span>(</span><span>var</span><span> i </span><span>=</span><span> </span><span>0</span><span>;</span><span> i </span><span>&lt;</span><span> </span><span>20</span><span>;</span><span> i</span><span>++)</span><span> </span><span>{</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>if</span><span> </span><span>((</span><span>i </span><span>%</span><span> </span><span>2</span><span>)</span><span> </span><span>==</span><span> </span><span>0</span><span>)</span><span> </span><span>{</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;sheet</span><span>.</span><span>getRange</span><span>(</span><span>'A1'</span><span>).</span><span>setBackground</span><span>(</span><span>'green'</span><span>);</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;sheet</span><span>.</span><span>getRange</span><span>(</span><span>'B1'</span><span>).</span><span>setBackground</span><span>(</span><span>'red'</span><span>);</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>}</span><span> </span><span>else</span><span> </span><span>{</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;sheet</span><span>.</span><span>getRange</span><span>(</span><span>'A1'</span><span>).</span><span>setBackground</span><span>(</span><span>'red'</span><span>);</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;sheet</span><span>.</span><span>getRange</span><span>(</span><span>'B1'</span><span>).</span><span>setBackground</span><span>(</span><span>'green'</span><span>);</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>}</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>SpreadsheetApp</span><span>.</span><span>flush</span><span>();</span><span><br>&nbsp; &nbsp;</span><span>}</span><span><br>&nbsp;</span><span>}</span><span><br>&nbsp;</span></code></pre></div></html>"
     }
   },
   {
@@ -63,7 +63,7 @@
     "paramCount": 0,
     "return": "Spreadsheet",
     "description": {
-      "en": "Returns the currently active spreadsheet, or null if there is none. Functions that are run in the context of a spreadsheet can get a reference to the corresponding Spreadsheet object by calling this function."
+      "en": "<html><div><h3><code>getActive()</code></h3><p>Returns the currently active spreadsheet, or null if there is none.Functions that are run in the context of a spreadsheet can get a reference to the correspondingSpreadsheet object by calling this function.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below logs the URL for the active spreadsheet.</span><span><br>&nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>SpreadsheetApp</span><span>.</span><span>getActive</span><span>().</span><span>getUrl</span><span>());</span><span><br>&nbsp;</span></code></pre><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet.html'>Spreadsheet</a></code> — the active Spreadsheet object</p></div></html>"
     }
   },
   {
@@ -73,7 +73,7 @@
     "paramCount": 0,
     "return": "Range",
     "description": {
-      "en": "Returns the range of cells that is currently considered active. This generally means the range that a user has selected in the active sheet, but in a custom function it refers to the cell being actively recalculated.\n\n\nReturn\nRange — the active Range object"
+      "en": "<html><div><h3><code>getActiveRange()</code></h3><p>Returns the range of cells that is currently considered active.This generally means the range that a user has selected in the active sheet, but in a custom function it refers to the cell being actively recalculated.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below will log the background color for the active range</span><span><br>&nbsp;</span><span>var</span><span> color </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>getActiveRange</span><span>().</span><span>getBackgroundColor</span><span>();</span><span><br>&nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>color</span><span>);</span><span><br>&nbsp;</span></code></pre><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/range.html'>Range</a></code> — the active Range object</p></div></html>"
     }
   },
   {
@@ -83,7 +83,7 @@
     "paramCount": 0,
     "return": "Sheet",
     "description": {
-      "en": "Gets the active sheet in a spreadsheet. The active sheet in a spreadsheet is the sheet that is being displayed in the spreadsheet UI.\n\n\nReturn\nSheet — the active Sheet object"
+      "en": "<html><div><h3><code>getActiveSheet()</code></h3><p>Gets the active sheet in a spreadsheet.The active sheet in a spreadsheet is the sheet that is being displayed in the spreadsheet UI.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below will log the name of the active sheet.</span><span><br>&nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>SpreadsheetApp</span><span>.</span><span>getActiveSheet</span><span>().</span><span>getName</span><span>());</span><span><br>&nbsp;</span></code></pre><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/sheet.html'>Sheet</a></code> — the active Sheet object</p></div></html>"
     }
   },
   {
@@ -93,7 +93,7 @@
     "paramCount": 0,
     "return": "Spreadsheet",
     "description": {
-      "en": "Returns the currently active spreadsheet, or null if there is none. Functions that are run in the context of a spreadsheet can get a reference to the corresponding Spreadsheet object by calling this function.\n\n\nReturn\nSpreadsheet — the active Spreadsheet object"
+      "en": "<html><div><h3><code>getActiveSpreadsheet()</code></h3><p>Returns the currently active spreadsheet, or null if there is none.Functions that are run in the context of a spreadsheet can get a reference to the correspondingSpreadsheet object by calling this function.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below logs the URL for the active spreadsheet.</span><span><br>&nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>SpreadsheetApp</span><span>.</span><span>getActiveSpreadsheet</span><span>().</span><span>getUrl</span><span>());</span><span><br>&nbsp;</span></code></pre><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet.html'>Spreadsheet</a></code> — the active Spreadsheet object</p></div></html>"
     }
   },
   {
@@ -103,7 +103,7 @@
     "paramCount": 0,
     "return": "Ui",
     "description": {
-      "en": "Returns an instance of the spreadsheet's user-interface environment that allows the script to add features like menus, dialogs, and sidebars. A script can only interact with the UI for the current instance of an open spreadsheet, and only if the script is bound to the spreadsheet. For more information, see the guides to menus and dialogs and sidebars.\n\nThis method only works in the new version of Google Sheets. The older version of Sheets continues to use an alternate syntax shown in the guides above.\n\n\nReturn\nUi — an instance of this spreadsheet's user-interface environment"
+      "en": "<html><div><h3><code>getUi()</code></h3><p>Returns an instance of the spreadsheet's user-interface environment that allows the script to add features like menus, dialogs, and sidebars. A script can only interact with the UI for the current instance of an open spreadsheet, and only if the script is<a href='https://developers.google.com/apps-script/scripts_containers'>bound</a> to the spreadsheet. For more information, see the guides to <a href='https://developers.google.com/apps-script/guides/menus'>menus</a> and<a href='https://developers.google.com/apps-script/guides/dialogs'>dialogs and sidebars</a>.</p><p>This method only works in the<a href='https://support.google.com/drive/answer/3541068'>new version of Google Sheets</a>.The older version of Sheets continues to use an alternate syntax shown in the guides above.</p><pre><span>&nbsp;</span><span>// Add a custom menu to the active spreadsheet, including a separator and a sub-menu.</span><span><br>&nbsp;</span><span>function</span><span> onOpen</span><span>(</span><span>e</span><span>)</span><span> </span><span>{</span><span><br>&nbsp; &nbsp;</span><span>SpreadsheetApp</span><span>.</span><span>getUi</span><span>()</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span>.</span><span>createMenu</span><span>(</span><span>'My Menu'</span><span>)</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span>.</span><span>addItem</span><span>(</span><span>'My menu item'</span><span>,</span><span> </span><span>'myFunction'</span><span>)</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span>.</span><span>addSeparator</span><span>()</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span>.</span><span>addSubMenu</span><span>(</span><span>SpreadsheetApp</span><span>.</span><span>getUi</span><span>().</span><span>createMenu</span><span>(</span><span>'My sub-menu'</span><span>)</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>.</span><span>addItem</span><span>(</span><span>'One sub-menu item'</span><span>,</span><span> </span><span>'mySecondFunction'</span><span>)</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>.</span><span>addItem</span><span>(</span><span>'Another sub-menu item'</span><span>,</span><span> </span><span>'myThirdFunction'</span><span>))</span><span><br>&nbsp; &nbsp; &nbsp; &nbsp;</span><span>.</span><span>addToUi</span><span>();</span><span><br>&nbsp;</span><span>}</span><span><br>&nbsp;</span></pre><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/base/ui.html'>Ui</a></code> — an instance of this spreadsheet's user-interface environment</p></div></html>"
     }
   },
   {
@@ -113,7 +113,7 @@
     "paramCount": 0,
     "return": "DataValidationBuilder",
     "description": {
-      "en": "Creates a builder for a data-validation rule.\n\n\nReturn\nDataValidationBuilder — the new builder"
+      "en": "<html><div><h3><code>newDataValidation()</code></h3><p>Creates a builder for a data-validation rule.</p><pre><span>&nbsp;</span><span>var</span><span> cell </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>getActive</span><span>().</span><span>getRange</span><span>(</span><span>'A1'</span><span>);</span><span><br>&nbsp;</span><span>var</span><span> rule </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>newDataValidation</span><span>()</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>.</span><span>requireNumberBetween</span><span>(</span><span>1</span><span>,</span><span> </span><span>100</span><span>)</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>.</span><span>setAllowInvalid</span><span>(</span><span>false</span><span>)</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>.</span><span>setHelpText</span><span>(</span><span>'Number must be between 1 and 100.'</span><span>)</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>.</span><span>build</span><span>();</span><span><br>&nbsp;cell</span><span>.</span><span>setDataValidation</span><span>(</span><span>rule</span><span>);</span><span><br>&nbsp;</span></pre><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/data-validation-builder.html'>DataValidationBuilder</a></code> — the new builder</p></div></html>"
     }
   },
   {
@@ -123,7 +123,7 @@
     "paramCount": 1,
     "return": "Spreadsheet",
     "description": {
-      "en": "Opens the spreadsheet that corresponds to the given File object.\n\n\nParameters\nName	Type	Description\nfile	File	the File to open\n\n\nReturn\nSpreadsheet — the spreadsheet"
+      "en": "<html><div><h3><code>open(file)</code></h3><p>Opens the spreadsheet that corresponds to the given File object.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// Get any starred spreadsheets from Google Drive, then open the spreadsheets and log the name</span><span><br>&nbsp;</span><span>// of the first sheet within each spreadsheet.</span><span><br>&nbsp;</span><span>var</span><span> files </span><span>=</span><span> </span><span>DriveApp</span><span>.</span><span>searchFiles</span><span>(</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>'starred = true and mimeType = \"'</span><span> </span><span>+</span><span> </span><span>MimeType</span><span>.</span><span>GOOGLE_SHEETS </span><span>+</span><span> </span><span>'\"'</span><span>);</span><span><br>&nbsp;</span><span>while</span><span> </span><span>(</span><span>files</span><span>.</span><span>hasNext</span><span>())</span><span> </span><span>{</span><span><br>&nbsp; &nbsp;</span><span>var</span><span> spreadsheet </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>open</span><span>(</span><span>files</span><span>.</span><span>next</span><span>());</span><span><br>&nbsp; &nbsp;</span><span>var</span><span> sheet </span><span>=</span><span> spreadsheet</span><span>.</span><span>getSheets</span><span>()[</span><span>0</span><span>];</span><span><br>&nbsp; &nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>sheet</span><span>.</span><span>getName</span><span>());</span><span><br>&nbsp;</span><span>}</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>file</span></code></td><td><code><a href='https://developers.google.com/apps-script/reference/drive/file.html'><span>File</span></a></code></td><td>the File to open</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet.html'>Spreadsheet</a></code> — the spreadsheet</p></div></html>"
     }
   },
   {
@@ -133,7 +133,7 @@
     "paramCount": 1,
     "return": "Spreadsheet",
     "description": {
-      "en": "Opens the spreadsheet with the given ID. A spreadsheet ID can be extracted from its URL. For example, the spreadsheet ID in the URL https://docs.google.com/spreadsheets/d/abc1234567/edit#gid=0 is \"abc1234567\".\n\n\nParameters\nName	Type	Description\nid	String	the unique identifier for the spreadsheet\n\n\nReturn\nSpreadsheet — the Spreadsheet object with the given id"
+      "en": "<html><div><h3><code>openById(id)</code></h3><p>Opens the spreadsheet with the given ID. A spreadsheet ID can be extracted from its URL. For example, the spreadsheet ID in the URLhttps://docs.google.com/spreadsheets/d/abc1234567/edit#gid=0 is \"abc1234567\".</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below opens a spreadsheet using its ID and logs the name for it.</span><span><br>&nbsp;</span><span>// Note that the spreadsheet is NOT physically opened on the client side.</span><span><br>&nbsp;</span><span>// It is opened on the server only (for modification by the script).</span><span><br>&nbsp;</span><span>var</span><span> ss </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>openById</span><span>(</span><span>\"abc1234567\"</span><span>);</span><span><br>&nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>ss</span><span>.</span><span>getName</span><span>());</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>id</span></code></td><td><code><span>String</span></code></td><td>the unique identifier for the spreadsheet</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet.html'>Spreadsheet</a></code> — the Spreadsheet object with the given id</p></div></html>"
     }
   },
   {
@@ -143,7 +143,7 @@
     "paramCount": 1,
     "return": "Spreadsheet",
     "description": {
-      "en": "Opens the spreadsheet with the given url.\n\n\nParameters\nName	Type	Description\nurl	String	the url for the spreadsheet\n\n\nReturn\nSpreadsheet — the Spreadsheet object with the given id"
+      "en": "<html><div><h3><code>openByUrl(url)</code></h3><p>Opens the spreadsheet with the given url.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below opens a spreadsheet using its id and logs the name for it.</span><span><br>&nbsp;</span><span>// Note that the spreadsheet is NOT physically opened on the client side.</span><span><br>&nbsp;</span><span>// It is opened on the server only (for modification by the script).</span><span><br>&nbsp;</span><span>var</span><span> ss </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>openByUrl</span><span>(</span><span><br>&nbsp; &nbsp; &nbsp;</span><span>'https://docs.google.com/spreadsheets/d/abc1234567/edit'</span><span>);</span><span><br>&nbsp;</span><span>Logger</span><span>.</span><span>log</span><span>(</span><span>ss</span><span>.</span><span>getName</span><span>());</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>url</span></code></td><td><code><span>String</span></code></td><td>the url for the spreadsheet</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet.html'>Spreadsheet</a></code> — the Spreadsheet object with the given id</p></div></html>"
     }
   },
   {
@@ -153,7 +153,7 @@
     "paramCount": 1,
     "return": "Range",
     "description": {
-      "en": "Sets the active range for the application. The spreadsheet UI will display the sheet that contains the chosen range and will select the cells defined in the chosen range.\n\n\nParameters\nName	Type	Description\nrange	Range	the Range to be made the active Range\n\n\nReturn\nRange — the new active Range"
+      "en": "<html><div><h3><code>setActiveRange(range)</code></h3><p>Sets the active range for the application.The spreadsheet UI will display the sheet that contains the chosen range and will select the cells defined in the chosen range.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below will set range C1:D4 in the first sheet as the active range</span><span><br>&nbsp;</span><span>var</span><span> ss </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>getActiveSpreadsheet</span><span>();</span><span><br>&nbsp;</span><span>var</span><span> range </span><span>=</span><span> ss</span><span>.</span><span>getSheets</span><span>()[</span><span>0</span><span>].</span><span>getRange</span><span>(</span><span>\"C1:D4\"</span><span>);</span><span><br>&nbsp;</span><span>SpreadsheetApp</span><span>.</span><span>setActiveRange</span><span>(</span><span>range</span><span>);</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>range</span></code></td><td><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/range.html'><span>Range</span></a></code></td><td>the Range to be made the active Range</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/range.html'>Range</a></code> — the new active Range</p></div></html>"
     }
   },
   {
@@ -163,7 +163,7 @@
     "paramCount": 1,
     "return": "Sheet",
     "description": {
-      "en": "Sets the active sheet in a spreadsheet. The spreadsheet UI will display the chosen sheet unless the sheet belongs to a different spreadsheet.\n\n\nParameters\nName	Type	Description\nsheet	Sheet	the new active Sheet\n\n\nReturn\nSheet — the Sheet that has been made the new active Sheet"
+      "en": "<html><div><h3><code>setActiveSheet(sheet)</code></h3><p>Sets the active sheet in a spreadsheet.The spreadsheet UI will display the chosen sheet unless the sheet belongs to a different spreadsheet.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below will make the 2nd sheet active in the active spreadsheet</span><span><br>&nbsp;</span><span>var</span><span> ss </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>getActiveSpreadsheet</span><span>();</span><span><br>&nbsp;</span><span>SpreadsheetApp</span><span>.</span><span>setActiveSheet</span><span>(</span><span>ss</span><span>.</span><span>getSheets</span><span>()[</span><span>1</span><span>]);</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>sheet</span></code></td><td><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/sheet.html'><span>Sheet</span></a></code></td><td>the new active Sheet</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/sheet.html'>Sheet</a></code> — the Sheet that has been made the new active Sheet</p></div></html>"
     }
   },
   {
@@ -173,7 +173,7 @@
     "paramCount": 1,
     "return": "void",
     "description": {
-      "en": "Sets the active spreadsheet.\n\n\nParameters\nName	Type	Description\nnewActiveSpreadsheet	Spreadsheet	the Spreadsheet to be made the active spreadsheet"
+      "en": "<html><div><h3><code>setActiveSpreadsheet(newActiveSpreadsheet)</code></h3><p>Sets the active spreadsheet.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The code below will make the spreadsheet with key \"1234567890\" the active spreadsheet</span><span><br>&nbsp;</span><span>var</span><span> ss </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>openById</span><span>(</span><span>\"1234567890\"</span><span>);</span><span><br>&nbsp;</span><span>SpreadsheetApp</span><span>.</span><span>setActiveSpreadsheet</span><span>(</span><span>ss</span><span>);</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>newActiveSpreadsheet</span></code></td><td><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet.html'><span>Spreadsheet</span></a></code></td><td>the Spreadsheet to be made the active spreadsheet</td></tr></tbody></table></div></div></html>"
     }
   },
   {
@@ -183,7 +183,7 @@
     "paramCount": 1,
     "return": "Spreadsheet",
     "description": {
-      "en": "Adds the given user to the list of editors for the Spreadsheet. If the user was already on the list of viewers, this method promotes the user out of the list of viewers.\n\n\nParameters\nName	Type	Description\nemailAddress	String	the email address of the user to add\n\n\nReturn\nSpreadsheet — this Spreadsheet, for chaining"
+      "en": "<html><div><h3><code>addEditor(emailAddress)</code></h3><p>Adds the given user to the list of editors for the <code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code>. If the user was already on the list of viewers, this method promotes the user out of the list of viewers.</p><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>emailAddress</span></code></td><td><code><span>String</span></code></td><td>the email address of the user to add</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code> — this <code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code>, for chaining</p></div></html>"
     }
   },
   {
@@ -193,7 +193,7 @@
     "paramCount": 1,
     "return": "Spreadsheet",
     "description": {
-      "en": "Adds the given user to the list of editors for the Spreadsheet. If the user was already on the list of viewers, this method promotes the user out of the list of viewers.\n\n\nParameters\nName	Type	Description\nuser	User	a representation of the user to add\n\n\nReturn\nSpreadsheet — this Spreadsheet, for chaining"
+      "en": "<html><div><h3><code>addEditor(user)</code></h3><p>Adds the given user to the list of editors for the <code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code>. If the user was alreadyon the list of viewers, this method promotes the user out of the list of viewers.</p><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>user</span></code></td><td><code><a href='https://developers.google.com/apps-script/reference/base/user.html'><span>User</span></a></code></td><td>a representation of the user to add</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code> — this <code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code>, for chaining</p></div></html>"
     }
   },
   {
@@ -203,7 +203,7 @@
     "paramCount": 1,
     "return": "Spreadsheet",
     "description": {
-      "en": "Adds the given array of users to the list of editors for the Spreadsheet. If any of the users were already on the list of viewers, this method promotes them out of the list of viewers.\n\n\nParameters\nName	Type	Description\nemailAddresses	String[]	an array of email addresses of the users to add\n\n\nReturn\nSpreadsheet — this Spreadsheet, for chaining"
+      "en": "<html><div><h3><code>addEditors(emailAddresses)</code></h3><p>Adds the given array of users to the list of editors for the <code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code>. If any of the users were already on the list of viewers, this method promotes them out of the list of viewers.</p><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>emailAddresses</span></code></td><td><code><span>String[]</span></code></td><td>an array of email addresses of the users to add</td></tr></tbody></table></div><h4>Return</h4><p><code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code> — this <code><a href='https://developers.google.com/apps-script/reference/spreadsheet/spreadsheet#'>Spreadsheet</a></code>, for chaining</p></div></html>"
     }
   },
   {
@@ -213,7 +213,7 @@
     "paramCount": 2,
     "return": "void",
     "description": {
-      "en": "Creates a new menu in the Spreadsheet UI. Each menu entry runs a user-defined function. Usually, you will want to call it from the onOpen function so that the menu is automatically created when the Spreadsheet is loaded.\n\n\nParameters\nName	Type	Description\nname	String	the name of the menu to be created\nsubMenus	Object[]	an array of JavaScript maps with name and functionName parameters"
+      "en": "<html><div><h3><code>addMenu(name, subMenus)</code></h3><p>Creates a new menu in the Spreadsheet UI.Each menu entry runs a user-defined function. Usually, you will want to call it from the onOpen function so that the menu is automatically created when the Spreadsheet is loaded.</p><pre><span>&nbsp;<br></span><code><span><br>&nbsp;</span><span>// The onOpen function is executed automatically every time a Spreadsheet is loaded</span><span><br>&nbsp;</span><span>function</span><span> onOpen</span><span>()</span><span> </span><span>{</span><span><br>&nbsp; &nbsp;</span><span>var</span><span> ss </span><span>=</span><span> </span><span>SpreadsheetApp</span><span>.</span><span>getActiveSpreadsheet</span><span>();</span><span><br>&nbsp; &nbsp;</span><span>var</span><span> menuEntries </span><span>=</span><span> </span><span>[];</span><span><br>&nbsp; &nbsp;</span><span>// When the user clicks on \"addMenuExample\" then \"Menu Entry 1\", the function function1 is</span><span><br>&nbsp; &nbsp;</span><span>// executed.</span><span><br>&nbsp; &nbsp;menuEntries</span><span>.</span><span>push</span><span>({</span><span>name</span><span>:</span><span> </span><span>\"Menu Entry 1\"</span><span>,</span><span> functionName</span><span>:</span><span> </span><span>\"function1\"</span><span>});</span><span><br>&nbsp; &nbsp;menuEntries</span><span>.</span><span>push</span><span>(</span><span>null</span><span>);</span><span> </span><span>// line separator</span><span><br>&nbsp; &nbsp;menuEntries</span><span>.</span><span>push</span><span>({</span><span>name</span><span>:</span><span> </span><span>\"Menu Entry 2\"</span><span>,</span><span> functionName</span><span>:</span><span> </span><span>\"function2\"</span><span>});</span><span><br><br>&nbsp; &nbsp;ss</span><span>.</span><span>addMenu</span><span>(</span><span>\"addMenuExample\"</span><span>,</span><span> menuEntries</span><span>);</span><span><br>&nbsp;</span><span>}</span><span><br>&nbsp;</span></code></pre><h4>Parameters</h4><div><table><tbody><tr><th>Name</th><th>Type</th><th>Description</th></tr><tr><td><code><span>name</span></code></td><td><code><span>String</span></code></td><td>the name of the menu to be created</td></tr><tr><td><code><span>subMenus</span></code></td><td><code><span>Object[]</span></code></td><td>an array of JavaScript maps with <code><span>name</span></code> and<code><span>functionName</span></code> parameters</td></tr></tbody></table></div></div></html>"
     }
   }
 ]
