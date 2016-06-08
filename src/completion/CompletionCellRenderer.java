@@ -2,6 +2,7 @@ package completion;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JToolTip;
 import javax.swing.ListCellRenderer;
 import java.awt.Color;
 import java.awt.Component;
@@ -34,5 +35,16 @@ class CompletionCellRenderer extends JLabel implements ListCellRenderer {
         }
 
         return this;
+    }
+
+    @Override
+    public JToolTip createToolTip() {
+        return new DescriptionToolTip();
+    }
+
+    private class DescriptionToolTip extends JToolTip {
+        private DescriptionToolTip() {
+            setFocusable(true);
+        }
     }
 }
