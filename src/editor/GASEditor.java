@@ -7,6 +7,7 @@ import completion.CompletionsPopup;
 import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.text.BadLocationException;
+import javax.swing.undo.UndoManager;
 import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -16,32 +17,63 @@ import java.awt.event.KeyEvent;
  */
 class GASEditor extends JEditorPane {
     GASEditor() {
-        addDotListener();
+        addKeyListener(new KeyAdp());
     }
 
-    /**
-     * .が入力されたらコード補完用ポップアップを表示
-     */
-    private void addDotListener() {
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent event) {
-                if (event.getKeyChar() == '.') {
-                    try {
-                        String keyword = getKeyword(getCaretPosition());
-                        JComboBox<CompletionItem> completions = CompletionData.getInstance().getCompletions(keyword);
-                        if (completions.getItemCount() > 0) {
-                            CompletionsPopup popup = new CompletionsPopup(completions, getDocument(), getCaretPosition());
-                            Rectangle rect = modelToView(getCaretPosition());
-                            popup.show(GASEditor.this, rect.x, rect.y + rect.height);
-                            requestFocusInWindow();
-                        }
-                    } catch (BadLocationException e) {
-                        e.printStackTrace();
+    private class KeyAdp extends KeyAdapter {
+        UndoManager undoManager = new UndoManager();
+
+        KeyAdp() {
+            getDocument().addUndoableEditListener(event -> undoManager.addEdit(event.getEdit()));
+        }
+
+        @Override
+        public void keyTyped(KeyEvent event) {
+            if (event.getKeyChar() == '.') { //.が入力されたらコード補完用ポップアップを表示
+                try {
+                    String keyword = getKeyword(getCaretPosition());
+                    JComboBox<CompletionItem> completions = CompletionData.getInstance().getCompletions(keyword);
+                    if (completions.getItemCount() > 0) {
+                        CompletionsPopup popup = new CompletionsPopup(completions, getDocument(), getCaretPosition());
+                        Rectangle rect = modelToView(getCaretPosition());
+                        popup.show(GASEditor.this, rect.x, rect.y + rect.height);
+                        requestFocusInWindow();
                     }
+                } catch (BadLocationException e) {
+                    e.printStackTrace();
                 }
             }
-        });
+        }
+
+        @Override
+        public void keyPressed(KeyEvent event) {
+            if (event.isControlDown()) {
+                switch (event.getKeyCode()) {
+                    case KeyEvent.VK_Z:
+                        if (undoManager.canUndo()) {
+                            undoManager.undo();
+                            event.consume();
+                        }
+                        break;
+                    case KeyEvent.VK_Y:
+                        if (undoManager.canRedo()) {
+                            undoManager.redo();
+                            event.consume();
+                        }
+                        break;
+                }
+            } else if (event.isMetaDown() && event.getKeyCode() == KeyEvent.VK_Z) {
+                if (event.isShiftDown()) {
+                    if (undoManager.canRedo()) {
+                        undoManager.redo();
+                        event.consume();
+                    }
+                } else if (undoManager.canUndo()) {
+                    undoManager.undo();
+                    event.consume();
+                }
+            }
+        }
     }
 
     /**
